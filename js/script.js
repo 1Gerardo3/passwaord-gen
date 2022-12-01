@@ -1,12 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var characterLength = 0;  // this should change everytime user pick how long password will be
-var mixedPassword = [];  //this is were the random password should be stored after in generates
-var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
-var upperCase = ["A","B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",];
-var numbers = ["1","2","3","4","5","6","7","8","9","0"];
-var specialChar = ["~","!","@","#","$","%","^","&","*","<",",","?","/","+","|","_",];
+var characterLength = 0; // this should change everytime user pick how long password will be
+var mixedPassword = []; //this is were the random password should be stored after in generates
+var lowerCase = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var numbers = "1234567890".split("");
+var specialChar = "~!@#$%^*()_+=-<>?/".split("");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -22,25 +22,26 @@ function writePassword() {
     var password = generatePassword();
     passwordText.value = password;
   }
+  localStorage.setItem("password", password);
 }
+
 function generatePassword() {
   var password = "";
   for (var i = 0; i < characterLength; i++) {
     var randomize = Math.floor(Math.random() * mixedPassword.length);
-    password = password + mixedPassword[randomize];
+    password += mixedPassword[randomize];
   }
   return password;
 }
 
 function prompts() {
   mixedPassword = [];
-  
+
   characterLength = prompt(
-      "How many Characters do you want your password to be? Enter 8-128 characters."
-      )
-      ;
-      //the entered length of password need to be a number between 8 and 128.
-      if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
+    "How many Characters do you want your password to be? Enter 8-128 characters."
+  );
+  //the entered length of password need to be a number between 8 and 128.
+  if (isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
     alert("Please enter a number between 8 and 128. Thank you try again");
     return false;
   }
@@ -59,10 +60,6 @@ function prompts() {
   return true;
 }
 
-
-
-
-
 // i need to see what starter code is linked to
 // i need to asign var and arreys need
 // var characterLength = ;   has to be 8 to 128
@@ -71,10 +68,6 @@ function prompts() {
 // var numbers = []; 0-9
 // var specialChar = []; anything thats not a number or letter
 // i need to make prompt for the questions confirms and alerts.
-//search up how to randomize
+// search up how to randomize
 
-
-
-
-//password not showing up on text area and when it do it say something html.
-//
+// use split  ("")
